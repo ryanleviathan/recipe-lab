@@ -72,4 +72,34 @@ describe('log routes', () => {
       recipeId: recipe.id
     }]);
   });
+
+  it('finds a log by id', async() => {
+    const recipe = await Recipe.insert({
+      name: 'cookies',
+      directions: [
+        'preheat oven to 375',
+        'mix ingredients',
+        'put dough on cookie sheet',
+        'bake for 10 minutes'
+      ],
+    });
+
+    const log = await Log.insert({
+      dateOfEvent: new Date(),
+      notes: 'This is fantastic! Defintely make these again',
+      rating: 10,
+      recipeId: recipe.id
+    });
+
+    const res = await request(app)
+      .get(`/api/v1/logs/${log.id}`);
+
+    expect(res.body).toEqual({
+      id: "1",
+      dateOfEvent: expect.anything(),
+      notes: 'This is fantastic! Defintely make these again',
+      rating: 10,
+      recipeId: recipe.id
+    });
+  });
 });
