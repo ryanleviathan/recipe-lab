@@ -11,6 +11,6 @@ CREATE TABLE logs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   date_of_event FLOAT NOT NULL,
   notes TEXT,
-  rating INT,
+  rating INTEGER CHECK (rating <= 10),
   recipe_id BIGINT REFERENCES recipes(id)
 );
