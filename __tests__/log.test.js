@@ -4,7 +4,6 @@ const request = require('supertest');
 const app = require('../lib/app');
 const Log = require('../lib/models/log');
 const Recipe = require('../lib/models/recipe');
-const { timeStamp } = require('console');
 
 describe('log routes', () => {
   beforeEach(() => {
@@ -29,13 +28,14 @@ describe('log routes', () => {
     const res = await request(app)
       .post('/api/v1/logs')
       .send({
-        dateOfEvent: timeStamp(),
+        dateOfEvent: new Date(),
         notes: 'This is fantastic! Defintely make these again',
         rating: 10,
         recipeId: recipe.id
       });
 
     expect(res.body).toEqual({
+      id: "1",
       dateOfEvent: expect.anything(),
       notes: 'This is fantastic! Defintely make these again',
       rating: 10,
