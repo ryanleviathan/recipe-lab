@@ -23,6 +23,11 @@ describe('recipe-lab routes', () => {
           'mix ingredients',
           'put dough on cookie sheet',
           'bake for 10 minutes'
+        ],
+        ingredients: [
+          { amount: '2' },
+          { measurements: 'cups' },
+          { name: 'flour' }
         ]
       })
       .then(res => {
@@ -34,6 +39,11 @@ describe('recipe-lab routes', () => {
             'mix ingredients',
             'put dough on cookie sheet',
             'bake for 10 minutes'
+          ],
+          ingredients: [
+            { amount: '2' },
+            { measurements: 'cups' },
+            { name: 'flour' }
           ]
         });
       });
@@ -41,9 +51,26 @@ describe('recipe-lab routes', () => {
 
   it('gets all recipes', async() => {
     const recipes = await Promise.all([
-      { name: 'cookies', directions: [] },
-      { name: 'cake', directions: [] },
-      { name: 'pie', directions: [] }
+      { name: 'cookies', directions: [],
+        ingredients: [
+          { amount: '2' },
+          { measurements: 'cups' },
+          { name: 'flour' }
+        ] },
+      { name: 'cake', directions: [], 
+        ingredients: [
+          { amount: '2' },
+          { measurements: 'cups' },
+          { name: 'flour' }
+        ]
+      },
+      { name: 'pie', directions: [],
+        ingredients: [
+          { amount: '2' },
+          { measurements: 'cups' },
+          { name: 'flour' }
+        ]
+      }
     ].map(recipe => Recipe.insert(recipe)));
 
     return request(app)
@@ -64,6 +91,11 @@ describe('recipe-lab routes', () => {
         'put dough on cookie sheet',
         'bake for 10 minutes'
       ],
+      ingredients: [
+        { amount: '2' },
+        { measurements: 'cups' },
+        { name: 'flour' }
+      ]
     });
 
     return request(app)
@@ -75,6 +107,11 @@ describe('recipe-lab routes', () => {
           'mix ingredients',
           'put dough on cookie sheet',
           'bake for 10 minutes'
+        ],
+        ingredients: [
+          { amount: '25' },
+          { measurements: 'cups' },
+          { name: 'chicken broth' }
         ]
       })
       .then(res => {
@@ -86,6 +123,11 @@ describe('recipe-lab routes', () => {
             'mix ingredients',
             'put dough on cookie sheet',
             'bake for 10 minutes'
+          ],
+          ingredients: [
+            { amount: '25' },
+            { measurements: 'cups' },
+            { name: 'chicken broth' }
           ]
         });
       });
@@ -100,6 +142,11 @@ describe('recipe-lab routes', () => {
         'put dough on cookie sheet',
         'bake for 10 minutes'
       ],
+      ingredients: [
+        { amount: '2' },
+        { measurements: 'cups' },
+        { name: 'flour' }
+      ]
     });
     const res = await request(app)
       .get(`/api/v1/recipes/${recipe.id}`);        
@@ -112,6 +159,11 @@ describe('recipe-lab routes', () => {
         'mix ingredients',
         'put dough on cookie sheet',
         'bake for 10 minutes'
+      ],
+      ingredients: [
+        { amount: '2' },
+        { measurements: 'cups' },
+        { name: 'flour' }
       ]
     });
   });
@@ -125,6 +177,11 @@ describe('recipe-lab routes', () => {
         'put dough on cookie sheet',
         'bake for 10 minutes'
       ],
+      ingredients: [
+        { amount: '2' },
+        { measurements: 'cups' },
+        { name: 'flour' }
+      ]
     });
     const res = await request(app)
       .delete(`/api/v1/recipes/${recipe.id}`);        
@@ -137,6 +194,11 @@ describe('recipe-lab routes', () => {
         'mix ingredients',
         'put dough on cookie sheet',
         'bake for 10 minutes'
+      ],
+      ingredients: [
+        { amount: '2' },
+        { measurements: 'cups' },
+        { name: 'flour' }
       ]
     });
   });
